@@ -47,20 +47,32 @@ export const AsteroidInputScreen: React.FunctionComponent<ScreenAsteroidInputScr
                 onChangeText={(value) => {
                     rootStore.asteroidStore.onChnageAst(value)
                 }}
-                inputStyle={{ color: "black" }}
+                inputStyle={ style.textInput}
                 placeholder={'Enter Asteroid ID'}
                 value={rootStore.asteroidStore.astId}
-
             />
-
             <Button
                 text={'Random Asteroid'} onPress={onRandomAstPress}
-                textStyle={{ fontSize: 20, color: "white" }}
-                style={{ height: 35, marginTop: 30, backgroundColor: "blue" }} />
+                textStyle={style.buttonTextStyle}
+                style={ style.buttonStyle} />
             <Button
-                textStyle={{ fontSize: 20, color: "white" }}
-                style={{ height: 35, marginTop: 30, backgroundColor:rootStore.asteroidStore.astId? "blue":"gray" }}
+                textStyle={style.buttonTextStyle}
+                style={[ style.buttonStyle,{backgroundColor:rootStore.asteroidStore.astId? "blue":"gray"}] }
                 text={'submit'} disabled={rootStore.asteroidStore.astId ? false : true} onPress={onSubmitPress} />
         </View>
     )
 })
+
+
+const style={
+    textInput:{
+        color: "black", marginLeft:'8%',marginRight:"8%"
+    },
+    buttonStyle:{
+        height: 35, marginTop: 30, backgroundColor: "blue", marginLeft:'8%',marginRight:"8%"
+    },
+    buttonTextStyle:{
+        fontSize: 20, color: "white"
+    }
+
+}

@@ -2,6 +2,7 @@ import { ApisauceInstance, create, ApiResponse } from "apisauce"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import * as Types from "./api.types"
+import { API_TOKEN } from "../../utils";
 
 /**
  * Manages all requests to the API.
@@ -104,7 +105,7 @@ export class Api {
 
   async getRandomAst(): Promise<Types.GetUserResult> {
     // make the api call
-    const response: ApiResponse<any> = await this.apisauce.get(`neo/browse?api_key=`+'xDgLheJsv5r5x7bZm76VKgcws9rzWIPsTmP020Tf')
+    const response: ApiResponse<any> = await this.apisauce.get(`neo/browse?api_key=`+API_TOKEN)
 
     // the typical ways to die when calling an api
     if (!response.ok) {
@@ -122,7 +123,7 @@ export class Api {
 
   async getAst(id: string): Promise<Types.GetUserResult> {
     // make the api call
-    const response: ApiResponse<any> = await this.apisauce.get(`neo/${id}`+'?api_key=xDgLheJsv5r5x7bZm76VKgcws9rzWIPsTmP020Tf')
+    const response: ApiResponse<any> = await this.apisauce.get(`neo/${id}`+'?api_key='+API_TOKEN)
 
     // the typical ways to die when calling an api
     if (!response.ok) {

@@ -1,7 +1,6 @@
 import { Instance, SnapshotOut, types, flow } from "mobx-state-tree"
 import { Api } from "../../services/api";
-import { Image, ImageStyle, Platform, TextStyle, View, ViewStyle, Text, Alert } from "react-native"
-
+import {randomIntFromInterval} from '../../utils'
 
 /**
  * A RootStore model.
@@ -44,7 +43,7 @@ export const AsteroidStoreModel = types.model("AsteroidStore").props({
             // ... yield can be used in async/await style
             const rendomData = yield api.getRandomAst();
             if (rendomData.kind == 'ok') {
-              const rendomId=  rendomData.user.near_earth_objects[0].id;
+              const rendomId=  rendomData.user.near_earth_objects[randomIntFromInterval(0,rendomData.user.near_earth_objects.length-1)].id;
               self.astId=rendomId
             }
             console.tron.log('re', rendomData)
